@@ -1,0 +1,27 @@
+@media screen and (max-width: 768px) {
+    .center {
+        width: 80%;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    img {
+        width: 90%;
+        max-width: 500px;
+        border-width: 1px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .center {
+        width: 90%;
+        padding: 10px;
+        border-radius: 2px;
+    }
+
+    img {
+        width: 100%;
+        max-width: 300px;
+        border-width: 1px;
+    }
+}
