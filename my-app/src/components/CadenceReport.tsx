@@ -6,6 +6,7 @@ interface CadenceData {
   heartrate_vs_cadence_r2: number;
   average_heart_rate_vs_average_cadence_plot: string;
   average_pace_vs_average_cadence_plot: string;
+  most_recent_cadence: number;
 }
 
 function CadenceReport() {
@@ -15,7 +16,38 @@ function CadenceReport() {
     heartrate_vs_cadence_r2: 0,
     average_heart_rate_vs_average_cadence_plot: 'null',
     average_pace_vs_average_cadence_plot: 'null',
+    most_recent_cadence: 0
   });
+
+  const [oldData, setOldData] = useState<CadenceData>({
+    average_cadence: 0,
+    pace_vs_cadence_r2: 0,
+    heartrate_vs_cadence_r2: 0,
+    average_heart_rate_vs_average_cadence_plot: 'null',
+    average_pace_vs_average_cadence_plot: 'null',
+    most_recent_cadence: 0
+  });
+
+  const updateData = () => {
+    setOldData(data)
+    const randomData = {
+      average_cadence: Math.floor(Math.random() * (55 + 1)) + 140,
+      pace_vs_cadence_r2: data.pace_vs_cadence_r2,
+      heartrate_vs_cadence_r2: data.heartrate_vs_cadence_r2,
+      average_heart_rate_vs_average_cadence_plot: data.average_heart_rate_vs_average_cadence_plot,
+      average_pace_vs_average_cadence_plot:  data.average_pace_vs_average_cadence_plot,
+      most_recent_cadence: Math.floor(Math.random() * (55 + 1)) + 140}
+    setData(randomData)
+    setRandom(true);
+  };
+
+   const returnData = () => {
+    setData(oldData)
+    setRandom(false);
+  };
+
+  const [random, setRandom] = useState(false)
+
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/cadence-report`)
@@ -29,20 +61,21 @@ function CadenceReport() {
 
   return (
     <div>
-      <h2>Cadence Report</h2>
-      {data.average_cadence < 167 ? (
+      <h2>Cadence Analysis</h2>
+      {data.most_recent_cadence < 167 ? (
         <p>
-          Your last run's average cadence was <span>{data.average_cadence}/min</span>, falling below the optimal range of 170-180. Focus on raising your cadence to enhance your running form and avoid overstriding.
+          Your last run's average cadence was <span>{data.most_recent_cadence}/min</span>, falling below the optimal range of 170-180. Focus on raising your cadence to enhance your running form and avoid overstriding.
         </p>
-      ) : data.average_cadence >= 167 && data.average_cadence <= 182 ? (
+      ) : data.most_recent_cadence >= 167 && data.most_recent_cadence <= 182 ? (
         <p>
-          Superb job on maintaining an average cadence of <span>{data.average_cadence}/min</span> on your last run! Keep up the excellent work and continue to concentrate on proper running form.
+          Superb job on maintaining an average cadence of <span>{data.most_recent_cadence}/min</span> on your last run! Keep up the excellent work and continue to concentrate on proper running form.
         </p>
       ) : (
         <p>
-          Your last run's average cadence was <span>{data.average_cadence}/min</span>, which is above the optimal range of 170-180. Be cautious not to overstride and concentrate on proper running form to prevent injury.
+          Your last run's average cadence was <span>{data.most_recent_cadence}/min</span>, which is above the optimal range of 170-180. Be cautious not to overstride and concentrate on proper running form to prevent injury.
         </p>
       )}
+      {random ? <h4 onClick={returnData}>(Reload Personal Data)</h4> : <h4 onClick={updateData}>(Randomize Data)</h4> }
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div style={{ flex: 1, marginRight: '5px' }}>
           <img
@@ -60,7 +93,7 @@ function CadenceReport() {
         </div>
       </div>
       <p>
-        We've discovered a significant positive correlation (r-squared = {data.pace_vs_cadence_r2}) between cadence and speed (as pace), and no notable correlation between your average heart rate and the cadence at which you complete your runs (r-squared = {data.heartrate_vs_cadence_r2}).
+        We've discovered a significant positive correlation (r-squared = <span className='little-span'>{data.pace_vs_cadence_r2}</span>) between cadence and speed (as pace), and no notable correlation between your average heart rate and the cadence at which you complete your runs (r-squared = <span className='little-span'>{data.heartrate_vs_cadence_r2}</span>).
       </p>
     </div>
   );
