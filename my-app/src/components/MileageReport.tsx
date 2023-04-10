@@ -20,6 +20,16 @@ function MileageReport() {
     total_distance_by_week_plot: 'null',
     moving_time_by_day_plot: 'null',
   });
+  const [oldData, setOldData] = useState<MileageData>({
+    week_prog: 0,
+    next_week_goal: 0,
+    miles_left: 0,
+    days_zero_last_3: 0,
+    days_zero_last_14: 0,
+    total_distance_by_week_plot: 'null',
+    moving_time_by_day_plot: 'null',
+  });
+  const [random, setRandom] = useState(false)
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/mileage-report`)
@@ -33,6 +43,31 @@ function MileageReport() {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
+   const updateData = () => {
+    setOldData(data)
+    let week_prog_temp = Math.floor(Math.random() * 50) + 1
+    let next_week_goal_temp = week_prog_temp + Math.floor(Math.random() * 20)
+    let miles_left_temp = next_week_goal_temp - week_prog_temp
+    let days_zero_last_3_temp = Math.floor(Math.random() * 3)
+    let days_zero_last_14_temp = Math.floor(Math.random() * 7) + days_zero_last_3_temp
+    const randomData = {
+      week_prog: week_prog_temp,
+      next_week_goal: next_week_goal_temp,
+      miles_left: miles_left_temp,
+      days_zero_last_3: days_zero_last_3_temp,
+      days_zero_last_14: days_zero_last_14_temp,
+      total_distance_by_week_plot: data.total_distance_by_week_plot,
+      moving_time_by_day_plot:  data.moving_time_by_day_plot,
+    };
+    setData(randomData)
+    setRandom(true);
+  };
+
+   const returnData = () => {
+    setData(oldData)
+    setRandom(false);
+  };
+
   if (!data) {
     return <p>Loading...</p>;
   }
@@ -40,7 +75,7 @@ function MileageReport() {
 
   return (
     <div>
-      <h2>Mileage Report</h2>
+      <h2>Mileage Update</h2>      
       {week_prog < next_week_goal - 5 ? (
         <p>
           Well done on achieving <span>{week_prog}</span> miles this week, keep striving and don't give up! You're
@@ -60,6 +95,7 @@ function MileageReport() {
           prevention, and resume training soon to keep working towards your objectives.
         </p>
       )}
+            {random ? <h4 onClick={returnData}>(Reload Personal Data)</h4> : <h4 onClick={updateData}>(Randomize Data)</h4> }
       <img
         src={`${process.env.REACT_APP_BACKEND_URL}/images/${data.total_distance_by_week_plot}`}
         alt="Total Distance by Week"
