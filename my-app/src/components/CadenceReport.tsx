@@ -64,15 +64,15 @@ function CadenceReport() {
       <h2>Cadence Analysis</h2>
       {data.most_recent_cadence < 167 ? (
         <p>
-          Your last run's average cadence was <span>{data.most_recent_cadence}/min</span>, falling below the optimal range of 170-180. Focus on raising your cadence to enhance your running form and avoid overstriding.
+          Your last run's average cadence was <span className="highlight">{data.most_recent_cadence}/min</span>, falling below the optimal range of 170-180. Focus on raising your cadence to enhance your running form and avoid overstriding.
         </p>
       ) : data.most_recent_cadence >= 167 && data.most_recent_cadence <= 182 ? (
         <p>
-          Superb job on maintaining an average cadence of <span>{data.most_recent_cadence}/min</span> on your last run! Keep up the excellent work and continue to concentrate on proper running form.
+          Superb job on maintaining an average cadence of <span className="highlight">{data.most_recent_cadence}/min</span> on your last run! Keep up the excellent work and continue to concentrate on proper running form.
         </p>
       ) : (
         <p>
-          Your last run's average cadence was <span>{data.most_recent_cadence}/min</span>, which is above the optimal range of 170-180. Be cautious not to overstride and concentrate on proper running form to prevent injury.
+          Your last run's average cadence was <span className="highlight">{data.most_recent_cadence}/min</span>, which is above the optimal range of 170-180. Be cautious not to overstride and concentrate on proper running form to prevent injury.
         </p>
       )}
       {random ? <h4 onClick={returnData}>(Reload Personal Data)</h4> : <h4 onClick={updateData}>(Randomize Data)</h4> }
@@ -92,8 +92,8 @@ function CadenceReport() {
           />
         </div>
       </div>
-      <p>
-        We've discovered a significant positive correlation (r-squared = <span className='little-span'>{data.pace_vs_cadence_r2}</span>) between cadence and speed (as pace), and no notable correlation between your average heart rate and the cadence at which you complete your runs (r-squared = <span className='little-span'>{data.heartrate_vs_cadence_r2}</span>).
+      <p className="img-text">
+        We've discovered a significant positive correlation (r-squared = <span className='little-span highlight'>{data.pace_vs_cadence_r2}</span>) between cadence and speed (as pace), and no notable correlation between cadence and average heart rate (r-squared = <span className='little-span highlight'>{data.heartrate_vs_cadence_r2}</span>).
       </p>
     </div>
   );

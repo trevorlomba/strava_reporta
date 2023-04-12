@@ -12,10 +12,17 @@ h1 {
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 32px;
     font-weight: bold;
     margin-top: 1rem;
 }
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+    // margin-top: 1rem;
+}
+
 
 p {
     font-size: 18px;
@@ -23,14 +30,18 @@ p {
     line-height: 1.5;
 }
 
-span {
-    font-size: 22px;
-    color: #fc4c02;
+.highlight {
+    font-size: 120%;
     font-weight: bold;
+    color: #fc4c02;
+    white-space: nowrap;
 }
 
 .little-span {
-    font-size: 18px; }
+    color: #73a8c8;
+    font-size: 90%; 
+    // font-weight: normal;
+    font-style: bold}
 
 .center {
     margin: auto;
@@ -49,4 +60,16 @@ img {
     width: 80%;
     max-width: 800px;
     border: 2px solid #6b758a;
+}
+
+.img-text {
+    font-size: 80%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-style: italic;
+    line-height: 100%;
+    width: 80%;
+    margin:auto;
+    padding-top: 1rem;
 }
