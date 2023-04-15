@@ -332,9 +332,7 @@ function MileageReport() {
 					(milesGoal - week_prog - longRunBinary * longRun) /
 					(daysLeft - daysOff - longRunBinary)
 				))).toFixed(1)}{' '}
-				miles
-				{' '}
-				per day with{' '}</span></span><span>
+				miles/day with{' '}</span></span><span>
 				<span className='highlight little-span'>
 					<span
 						className='days-off-incr-button'
@@ -356,9 +354,7 @@ function MileageReport() {
 					(milesGoal - week_prog) /
 					(daysLeft - daysOff)
 				))).toFixed(1)}{' '}
-				miles
-			{' '}
-			per day with{' '}</span>
+				miles/day with{' '}</span>
 			<span className='highlight little-span' >
 				<span
 					className='days-off-incr-button'
@@ -417,20 +413,19 @@ function MileageReport() {
 
 	return (
 	<div>
-		<h2>Mileage Update</h2>
-		{milesGoal === 0 ? <h3>
+		{milesGoal === 0 ? <h2>
 				Off to a fresh start!
-			</h3> : week_prog < milesGoal ? (
-			<h3>
+			</h2> : week_prog < milesGoal ? (
+			<h2>
 				Only <span className='highlight'>{(milesGoal - week_prog).toFixed(1)} miles </span>
 				to go!
-			</h3>
+			</h2>
 		) : (
 			<>
-				<h3>
-					Well done! You ran{' '}
-					<span className='highlight'>{week_prog.toFixed(1)} miles</span>...
-				</h3>
+				<h2>
+					You ran{' '}
+					<span className='highlight'>{week_prog.toFixed(1)} miles</span>
+				, well done! </h2>
 			</>
 		)}
 		{totalDistanceByWeekPlot ? <div>
@@ -538,7 +533,7 @@ function MileageReport() {
           )
         : (
             <p>
-              Skip the long run of {longRunElement()} to avoid exceeding your weekly mileage. Instead, plan to use the next {daysLeft} day(s) to cover your remaining <span className=""> {Math.max(0, milesGoal - week_prog).toFixed(1)} miles:</span>{daysOffElement()}.
+              Skip the long run of {longRunElement()} to avoid exceeding your weekly mileage. Instead, plan to use the next {daysLeft} day(s) to cover your remaining <span className=""> {Math.max(0, milesGoal - week_prog).toFixed(1)} miles: </span>{daysOffElement()}.
             </p>
           )
       )
