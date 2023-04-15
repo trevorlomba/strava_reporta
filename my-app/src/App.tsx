@@ -8,6 +8,7 @@ import './styles/App.scss';
 function App() {
   return (
     <div className="App">
+      <div className = "center-parent">
       <div className="center">
         <h1>Progress Report for TJ</h1>
         <Router>
@@ -15,6 +16,7 @@ function App() {
         <ReportSlider />
         </Router>
         <Footer />
+      </div>
       </div>
     </div>
   );

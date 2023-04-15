@@ -356,16 +356,16 @@ function RestReport() {
 			) : days_zero_last_14 < 2 ? (
 				<p>
 					Nice work on providing your body with adequate rest. You've taken{' '}
-					<span className='highlight'>{days_zero_last_14}</span> rest day(s) in
-					the last 14 days. It's important to balance training and rest to avoid
+					<span className='highlight'>{days_zero_last_14} rest day(s) </span>in
+					the last 14. It's important to balance training and rest to avoid
 					overtraining and injuries. Keep listening to your body and adjusting
 					your schedule as needed.
 				</p>
 			) : (
 				<p>
 					Good balance between training and rest days! You've taken{' '}
-					<span className='highlight'>{days_zero_last_14}</span> rest day(s) in
-					the last 14 days. Maintaining this consistency will help you achieve
+					<span className='highlight'>{days_zero_last_14} rest day(s)</span>  in
+					the last 14. Maintaining this consistency will help you achieve
 					your goals while minimizing the risk of injury.
 				</p>
 			)}

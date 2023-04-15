@@ -15,8 +15,8 @@ body {
 
 h1 {
     font-size: 40px;
-    margin-top: 1vh;
-    color: #ee5a1a;
+    margin-top: 3vh;
+    color: #fff;
 }
 
 h2 {
@@ -83,13 +83,20 @@ p {
 
 .center {
     margin: auto;
+    padding: 3vh;
+    border: 2px solid #fc4d02;
+    background-color: #282c34;
+
+}
+.center-parent {
+    margin: auto;
+    width: 70%;
     margin-top:5vh;
-    width: 50%;
-    padding: 30px;
-    border: 2px solid #fc4c02;
+    margin-bottom:10vh;
+    border: 2vh solid #fc4d0200;
     border-radius: 10px;
     background-color: #282c34;
-    margin-bottom: 10vh;
+
 }
 
 img {
